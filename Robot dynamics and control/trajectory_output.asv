@@ -1,0 +1,7 @@
+function data = trajectory_output(file_string)
+    %traj_data = [time, pos (1x6), vel(1x6)]
+    %traj_data = load(file_string+'.mat'); previously
+    disp(file_string);
+    traj_data = evalin('base', 'M(file_string);
+    data = traj_data;
+end

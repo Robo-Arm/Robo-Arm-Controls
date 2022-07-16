@@ -1,0 +1,13 @@
+function [Tn, C] = DH_homog(Ti, di, ai, ali)
+    I = [1 0 0; 0 1 0; 0 0 1];
+    i = [1;0;0];
+    K = [0;0;1];
+    OT = [0 0 0];
+    KX = [0 -1 0; 1 0 0; 0 0 0]; %K cross
+    iX = [0 0 0; 0 0 -1; 0 1 0]; %I cross
+    Ma = [expm(Ti*KX), [0;0;0]; OT, 1];
+    Md = [I, di*K; OT, 1];
+    Ml = [I, ai*i; OT, 1];
+    Mt = [expm(ali*iX), [0;0;0]; OT, 1];
+    C = expm(Ti*get_cross(K)) * expm(ali*get_cross(i));
+    Tn = Ma*Md*Ml*Mt;%final Homogeneous matrix
